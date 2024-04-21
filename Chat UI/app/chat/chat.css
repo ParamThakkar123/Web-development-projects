@@ -10,9 +10,11 @@
 .animated-gradient-text {
   font-size: 48px; /* Adjust the font size as needed */
   font-weight: bold;
-  background: linear-gradient(90deg, #f39c12, #8e44ad, #2980b9, #27ae60);
+  background-image: linear-gradient(90deg, #f39c12, #8e44ad, #2980b9, #27ae60);
   background-size: 300% 100%; /* Extend the gradient for a smooth animation */
   -webkit-background-clip: text; /* Clip the background to the text */
+  background-clip: text; /* Standardized version for other browsers */
   -webkit-text-fill-color: transparent; /* Make the text itself transparent */
+  color: transparent; /* Make the text itself transparent */
   animation: gradientAnimation 5s infinite alternate; /* Apply the keyframe animation */
 }
