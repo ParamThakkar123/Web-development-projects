@@ -22,9 +22,9 @@ const Chat = () => {
           <ModeToggle />
         </div>
 
-        <div className="flex-1 text-center tracking-wide pl-12 pr-12 mt-40 text-xl">
+        <div className="flex-1 text-center tracking-wide pl-12 pr-12 mt-48 text-xl">
           <span className="animated-gradient-text">Welcome to the MarathiGPT</span>
-          <p className="mt-5">Where our language model speaks better than your local chaiwala ! If our AI cracks a joke, don't be surprised if it asks for a tip.. in data! Get ready to chat, laugh and maybe even argue with a machine. (Spoiler: It always has the last word.)</p>
+          <p className="mt-5 opacity-80">Our language model out-talks your local chaiwala, and if it jokes, it might ask for a tip... in data!</p>
         </div>
 
         <div className="input-container relative p-5"> {/* Input area */}
@@ -45,7 +45,6 @@ const Chat = () => {
     offsetX={-20}
   />
 </div>
-
       </div>
     </div>
   );

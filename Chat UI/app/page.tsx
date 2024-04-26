@@ -1,10 +1,10 @@
 import React from 'react'
-import Chat from './chat/page'
+import Front from './front/front'
 
 const Page = () => {
   return (
     <div>
-      <Chat />
+      <Front />
     </div>
   )
 }
