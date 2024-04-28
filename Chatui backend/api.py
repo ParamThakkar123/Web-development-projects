@@ -6,9 +6,15 @@ from langchain.chains import ConversationChain
 from langchain.prompts.prompt import PromptTemplate
 from transformers import AutoModelForCausalLM, AutoTokenizer
 import uvicorn
+from typing import List
+import json
+from pymongo import MongoClient
+from pydantic import BaseModel
 
 uri = "mongodb+srv://paramthakkar864:paramthakkar864@cluster0.wmszguq.mongodb.net/GPTdb?retryWrites=true&w=majority&appName=Cluster0"
+
 app = FastAPI()
+
 tokenizer = AutoTokenizer.from_pretrained("smallstepai/Misal-1B-instruct-v0.1")
 model = AutoModelForCausalLM.from_pretrained("smallstepai/Misal-1B-instruct-v0.1")
 
@@ -27,6 +33,29 @@ _DEFAULT_TEMPLATE = """
 History: \"{history}\"
 Query: \"{input}\"
 """
+
+client = MongoClient("mongodb+srv://paramthakkar864:paramthakkar864@cluster0.wmszguq.mongodb.net/GPTdb?retryWrites=true&w=majority&appName=Cluster0")
+db = client["chat_history"]
+collection = db["message_store"]
+
+class Message(BaseModel):
+    _id: str
+    SessionId: str
+    History: dict
+
+@app.get("/messages", response_model=List[Message])
+def get_messages():
+    messages = list(collection.find({}, {"_id": 1, "SessionId": 1, "History": 1}))
+    formatted_messages = []
+    for message in messages:
+        formatted_message = {
+            "_id": str(message["_id"]),
+            "SessionId": str(message["SessionId"]),
+            "History": json.loads(message["History"])
+        }
+        formatted_messages.append(formatted_message)
+    return formatted_messages
+
 
 @app.post('/chat')
 def chatbot(input, session):

@@ -5,6 +5,7 @@ import 'aos/dist/aos.css';
 import Navbar from '../Components/Navbar/Navbar'
 import Typewriter from 'typewriter-effect'
 import Footer from '../Components/Footer/Footer'
+import Image from 'next/image';
 import { Button } from '@/components/ui/button'
 import { MoveUpRight } from 'lucide-react'
 import Link from 'next/link'
@@ -58,7 +59,7 @@ const Front = () => {
             <div data-aos="fade-up" data-aos-duration="500" className='flex items-center justify-center'>
                 <span className='text-7xl p-5'>Try MarathiGPT</span>
             </div>
-            <div className='mt-10 pr-24 pl-24 text-2xl tracking-wide'>
+            <div className='mt-10 pr-24 pl-24 text-3xl tracking-wider text-center'>
                 <span className='sr-only'>{text}</span>
                 <motion.span ref={ref} initial="hidden" animate={isInView ? "visible" : "hidden"} transition={{ staggerChildren: 0.020 }} aria-hidden>
                 {
@@ -113,7 +114,7 @@ const Front = () => {
                 <p className='text-2xl text-center mt-5 pl-20 pr-16'>
                     Checkout our model on <Link href='/'>Huggingface</Link>
                 </p>
-                <img src="/hf-logo.svg" alt="hf-logo" />
+                <Image src="/hf-logo.svg" height={900} width={900} alt="hf-logo" />
             </div>
         </div>
         <Footer />

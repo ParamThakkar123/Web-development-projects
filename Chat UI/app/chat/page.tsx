@@ -10,6 +10,17 @@ import './chat.css'
 const Chat = () => {
   const [text, setText] = useState("");
   const [lang, setLang] = useState<Language>("mr");
+  const [sessionName, setSessionName] = useState("");
+  const [createSession, setCreateSession] = useState(false);
+
+  const handleNewChat = () => {
+    setCreateSession(true)
+  }
+
+  const handleCreateSession = () => {
+    setCreateSession(false)
+    setSessionName("");
+  }
 
   return (
     <div className="flex">
